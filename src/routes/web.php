@@ -12,3 +12,6 @@
 */
 use \Illuminate\Support\Facades\Route;
 Route::get('/quizy/{id?}','QuizyController@index');
+// 第一引数：アクセスするアドレス
+// ？は任意パラメータ
+// 第二引数：呼び出すコントローラー@アクション

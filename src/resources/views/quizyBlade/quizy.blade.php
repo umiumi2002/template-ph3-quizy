@@ -10,12 +10,15 @@
 <body>
     
  <div class="container" >
+    <!-- レイアウト、ループを知る -->
+    <!-- チャプター5：マイグレーション（テーブル創る）とシーだーの仕組み（ダミーデータ） -->
+    <!-- 6が大事 -->
       @foreach($choices[$id] as $choice)
-      <h1 class = "question">1.この地名は何と読む?</h1>
+      <h1 class = "question">{{ $loop->iteration }}.この地名は何と読む?</h1>
       <img src="https://d1khcm40x1j0f.cloudfront.net/quiz/34d20397a2a506fe2c1ee636dc011a07.png" alt="高輪" class = "img">
     
       <div class="choice" id="correct" >
-          {{ $choice[0] }}
+      {{ $choice[0] }}
       </div>
       <div class="choice" id="incorrect1">
       {{ $choice[1] }}
