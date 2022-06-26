@@ -27,6 +27,7 @@ class CreateQuizyTable extends Migration
      * @return void
      */
     public function down()
+    // rollbackするとdownメソッド実行
     {
         Schema::dropIfExists('quizy');
     }
