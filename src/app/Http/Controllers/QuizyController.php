@@ -18,7 +18,7 @@ class QuizyController extends Controller
         $choices = [
             1=>[
                 1=>['たかなわ','たかわ','こうわ'],
-                2=>['可めど','かめと','kameido'],
+                2=>['かめいど','かめと','かめど'],
                 3=>['こうじまち','おかとまち','かゆまち']
             ],
             2=>[
@@ -29,7 +29,7 @@ class QuizyController extends Controller
             ];
 
         return view('quizyBlade.quizy',compact('id','choices'));
-        // 第一引数：ファイル
+        // 第一引数：フォルダ.ファイル
         // 第二引数：変数を渡す、コンパクトでまとめる
 
     }
