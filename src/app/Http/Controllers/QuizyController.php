@@ -15,22 +15,13 @@ class QuizyController extends Controller
     public function index($id){
         // {id}の値を受取るための引数$id
         // choices配列を用意→bladeで使うため
-        $choices = [
-            1=>[
-                1=>['たかなわ','たかわ','こうわ'],
-                2=>['かめいど','かめと','かめど'],
-                3=>['こうじまち','おかとまち','かゆまち']
-            ],
-            2=>[
-                1=>['むこうひだ','むかいなだ','むきひら'],
-                2=>['おしらべ','みよし','みつぎ'],
-                3=>['ぎやま','ぎんざん','かなやま']
-            ]
-            ];
+        
+        $items = DB::select('select * from quizy');
 
-        return view('quizyBlade.quizy',compact('id','choices'));
+        return view('quizyBlade.quizy',compact('items'));
         // 第一引数：フォルダ.ファイル
         // 第二引数：変数を渡す、コンパクトでまとめる
+        // viewの編集とcontorollerで定義した変数の名前が同じときにcompact関数でまとめる
 
     }
     
