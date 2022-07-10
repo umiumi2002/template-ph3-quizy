@@ -11,10 +11,6 @@
 - [ ] テーブル名、項目名、型はバックアップのものと同じになっていますか？				
 - [ ]rollbackでmigration実行前の状態になりますか？						
 - [ ] "■seederデータを登録出来ましたか？"		
-			
-				
-			
-			aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 				
 
 ## 注意点やレビュワーに伝えたいこと(あれば)
@@ -26,6 +22,5 @@
 1-1.png 2-1.pngのように都道府県別に画像の名前を付けた
 
 ## 課題が終わっている証跡(スクショ)
-image.png
-
+/week37.png
 <!-- gitignore変える？ -->

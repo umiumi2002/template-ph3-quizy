@@ -1,0 +1,57 @@
+
+
+
+
+.label__check+label::before {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    /* transform: translate(-50%, -50%); */
+    /*中央ぞろえにする*/
+    border: 1px solid #a9a9a9;
+    /*お好きなや太さで。*/
+    border-radius: 50%;
+    /*ポインターを表示する*/
+    cursor: pointer;
+    /* background: #a9a9a9; */
+    /* width: 10px; */
+    /* height: 6px; */
+    box-sizing: border-box;
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff;
+    /* position: absolute; */
+    /*ここから下は位置を調整する*/
+    /* top: 50%; */
+    /* left: 5px; */
+    /*箱を斜めに傾けてチェック表示にする*/
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.label__check:checked+label::before {
+    /*チェックしたときの箱の色を変える*/
+    background: cornflowerblue;
+}
+
+.label__check:checked+label::after {
+    /*チェックの✓をつくる*/
+    content: "";
+    display: block;
+    width: 10px;
+    height: 6px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff;
+    position: absolute;
+    /*ここから下は位置を調整する*/
+    top: 50%;
+    left: 5px;
+    /*箱を斜めに傾けてチェック表示にする*/
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg) translateY(-50%);
+}
