@@ -1,0 +1,20 @@
+<?php
+
+namespace Database\Seeders;
+// namespace 指定するとシーディング実行できない
+
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        
+        $this->call(QuizyTableSeeder::class);
+    }
+}
