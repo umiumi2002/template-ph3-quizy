@@ -15,6 +15,7 @@
     <!-- チャプター5：マイグレーション（テーブル創る）とシーだーの仕組み（ダミーデータ） -->
     <!-- 6が大事 -->
       @foreach($items as $item)
+      {{-- 1にしたら東京のものだけ、2にしたら広島のものだけ --}}
       <h1 class = "question">{{ $loop->iteration }}.この地名は何と読む?</h1>
       <img class="question__img" src="{{ asset('/img/{$choices[$id]}_{$loop->iteration}') }}.png" alt="">
       <ul class="question__lists">

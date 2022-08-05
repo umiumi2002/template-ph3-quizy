@@ -13,7 +13,17 @@ class CreateQuizyTable extends Migration
      */
     public function up()
     {
-        Schema::create('quizy', function (Blueprint $table) {
+        Schema::create('prefectures', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+        });
+        Schema::create('questions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('prefecture_id');
+            $table->string('image');
+
+        });
+        Schema::create('choices', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('question_id');
             $table->string('name');
@@ -27,8 +37,9 @@ class CreateQuizyTable extends Migration
      * @return void
      */
     public function down()
-    // rollbackするとdownメソッド実行
     {
-        Schema::dropIfExists('quizy');
+        Schema::dropIfExists('prefectures');
+        Schema::dropIfExists('questions');
+        Schema::dropIfExists('choices');
     }
 }
