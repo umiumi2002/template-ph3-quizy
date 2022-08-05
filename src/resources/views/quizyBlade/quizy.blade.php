@@ -1,4 +1,4 @@
-{{ dd(phpinfo()) }}
+{{-- {{ dd(phpinfo()) }} --}}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -30,7 +30,7 @@
       </ul>
       <div class="box" id="resultbox1">
         <p class="correctbox">正解！</p>
-          <br>正解は「{{ $items -> name }}」です！
+          <br>正解は「{{ $item -> name }}」です！
       </div>
       @endforeach
       {{-- <!-- <div class="box" id="resultbox1">

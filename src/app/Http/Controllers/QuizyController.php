@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 // requestを使える状態にしている
 
+use Illuminate\Support\Facades\DB;
+
 class QuizyController extends Controller
 // クラスの定義,Controllerというクラスを継承
 { 
