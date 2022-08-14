@@ -15,13 +15,13 @@
         <!-- レイアウト、ループを知る -->
         <!-- チャプター5：マイグレーション（テーブル創る）とシーだーの仕組み（ダミーデータ） -->
         <!-- 6が大事 -->
-        <h1>{{ $prefectures->name }}</h1>
-        @foreach ($questions as $question)
+        <h1>{{ $prefecture->name }}</h1>
+        @foreach ($questions->$questions as $question)
             {{-- 1にしたら東京のものだけ、2にしたら広島のものだけ --}}
             <h2 class="question">{{ $loop->iteration }}.この地名は何と読む?</h2>
             <img class="question__img" src="{{ asset('img/' . $question->image) }}" alt="">
             <ul class="question__lists">
-              @foreach ($choices->where('question_id', $question->id) as $choice)
+              @foreach ($question -> $choices as $choice)
               {{-- where(フィールド名、値) choicesのquestion_id(1,2,3...)と自動生成されるquestionのidが一致する --}}
                 <div class="question__list" id="correct">
                     {{ $choice -> name }}
