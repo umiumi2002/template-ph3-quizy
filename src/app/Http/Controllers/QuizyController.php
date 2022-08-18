@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 // 名前空間：クラスを階層的に整理するための仕組み
 
 
-use APP\Prefecture;
+use App\Prefecture;
 use Illuminate\Http\Request;
 // requestを使える状態にしている
 
@@ -25,9 +25,9 @@ class QuizyController extends Controller
         //東京と広島でidが違う、1つに限定した値になる
         // $questions = DB::table('questions')->where('prefecture_id', $id)->get();
         // $choices = DB::table('choices')->get();
-        $prefecture = APP\Prefecture::with("questions.choices")->find($id);
+        $prefecture = Prefecture::with("questions.choices")->find($id);
 
-        return view('quizyBlade.quizy',compact('prefecture','questions','choices','id'));
+        return view('quizyBlade.quizy',compact('prefecture','id'));
         // 第一引数：フォルダ.ファイル
         // 第二引数：変数を渡す、コンパクトでまとめる
         // viewの編集とcontorollerで定義した変数の名前が同じときにcompact関数でまとめる

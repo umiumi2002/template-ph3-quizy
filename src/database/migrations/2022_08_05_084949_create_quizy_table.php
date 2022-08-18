@@ -29,6 +29,16 @@ class CreateQuizyTable extends Migration
             $table->string('name');
             $table->boolean('valid');
         });
+        Schema::create('users', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email');
+            $table->dateTime('email_verified_at');
+            $table->string('password');
+            $table->string('remember_token');
+            $table->dateTime('created_at');
+            $table->dateTime('updated_at');
+        });
     }
 
     /**
@@ -41,5 +51,6 @@ class CreateQuizyTable extends Migration
         Schema::dropIfExists('prefectures');
         Schema::dropIfExists('questions');
         Schema::dropIfExists('choices');
+        Schema::dropIfExists('users');
     }
 }

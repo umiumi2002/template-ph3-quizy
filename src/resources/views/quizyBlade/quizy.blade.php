@@ -1,4 +1,4 @@
-{{-- {{ dd(phpinfo()) }} --}}
+{{-- {{ dd($prefecture) }} --}}
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -16,15 +16,16 @@
         <!-- チャプター5：マイグレーション（テーブル創る）とシーだーの仕組み（ダミーデータ） -->
         <!-- 6が大事 -->
         <h1>{{ $prefecture->name }}</h1>
-        @foreach ($questions->$questions as $question)
+        @foreach ($prefecture->questions as $question)
             {{-- 1にしたら東京のものだけ、2にしたら広島のものだけ --}}
+            {{-- 矢印の右は＄をとる --}}
             <h2 class="question">{{ $loop->iteration }}.この地名は何と読む?</h2>
             <img class="question__img" src="{{ asset('img/' . $question->image) }}" alt="">
             <ul class="question__lists">
-              @foreach ($question -> $choices as $choice)
+              @foreach ($question ->choices as $choice)
               {{-- where(フィールド名、値) choicesのquestion_id(1,2,3...)と自動生成されるquestionのidが一致する --}}
                 <div class="question__list" id="correct">
-                    {{ $choice -> name }}
+                    {{ $choice ->name }}
                 </div>
                 {{-- <div class="question__list" id="incorrect1">
                     {{ $item->name }}
