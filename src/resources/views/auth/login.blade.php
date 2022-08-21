@@ -6,6 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
+                {{-- __(    ):多言語化というもので中の英語を変換し表示することができru。 --}}
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">

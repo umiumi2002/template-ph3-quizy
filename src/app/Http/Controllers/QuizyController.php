@@ -8,6 +8,8 @@ use App\Prefecture;
 use Illuminate\Http\Request;
 // requestを使える状態にしている
 
+use App\Http\Controllers\Controller;
+
 use Illuminate\Support\Facades\DB;
 
 
@@ -28,6 +30,7 @@ class QuizyController extends Controller
         $prefecture = Prefecture::with("questions.choices")->find($id);
 
         return view('quizyBlade.quizy',compact('prefecture','id'));
+        // return view('quizyBlade.home',compact('prefecture','id'));
         // 第一引数：フォルダ.ファイル
         // 第二引数：変数を渡す、コンパクトでまとめる
         // viewの編集とcontorollerで定義した変数の名前が同じときにcompact関数でまとめる
