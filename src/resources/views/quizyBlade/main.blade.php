@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>地名クイズトップページ</title>
+    <title>地名クイズトップページかずきさんのコードコピペ</title>
 </head>
 <body>
     <ul>
@@ -18,5 +18,7 @@
         @endforeach
     </ul>
     <a href="{{ url('/add') }}">追加</a>
+    {{-- ⇧遷移している --}}
 </body>
 </html>
+

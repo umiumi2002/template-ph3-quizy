@@ -10,9 +10,8 @@
 </head>
 
 <body>
-  <div class="question">
+  {{-- <div class="question">
       <a href="{{ route('quizy', ['id' => 1]) }}">東京の難読地名クイズ</a>
       <a href="{{ route('quizy', ['id' => 2]) }}">広島の難読地名クイズ</a>
-         {{-- ↑localhostは自分だけ、公開したときは通用しない --}}
-  </div>
+  </div> --}}
 </body>         

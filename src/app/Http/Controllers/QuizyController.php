@@ -28,13 +28,21 @@ class QuizyController extends Controller
         // $questions = DB::table('questions')->where('prefecture_id', $id)->get();
         // $choices = DB::table('choices')->get();
         $prefecture = Prefecture::with("questions.choices")->find($id);
+        //子のリレーション.孫のリレーション
 
         return view('quizyBlade.quizy',compact('prefecture','id'));
         // return view('quizyBlade.home',compact('prefecture','id'));
         // 第一引数：フォルダ.ファイル
         // 第二引数：変数を渡す、コンパクトでまとめる
         // viewの編集とcontorollerで定義した変数の名前が同じときにcompact関数でまとめる
+    }
 
+    public function login() {
+        return view('quizyBlade.quizy');
+    }
+
+    public function create() {
+        
     }
     
 };
