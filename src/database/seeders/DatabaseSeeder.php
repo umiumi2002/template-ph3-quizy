@@ -1,6 +1,5 @@
 <?php
 
-namespace Database\Seeders;
 // namespace 指定するとシーディング実行できない
 
 use Illuminate\Database\Seeder;
