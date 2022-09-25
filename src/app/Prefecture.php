@@ -28,6 +28,7 @@ class Prefecture extends Model{
         return Prefecture::all();
     }
 
+    //登録処理
     public function InsertTitle($request)
     {
         // リクエストデータを基に管理マスターユーザーに登録する
@@ -36,5 +37,14 @@ class Prefecture extends Model{
         ]);
     }
 
+    //更新処理
+    public function updateTitle($request, $prefecture)
+    {
+        $result = $prefecture->fill([
+            'name' => $request->name
+        ])->save();
+            //$prefecture->fill([])->save()で先ほど取得したレコード1件を更新する
+        return $result;
+    }
     
 };

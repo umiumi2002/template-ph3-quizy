@@ -43,8 +43,14 @@ Route::get('/create','AdminController@create')->name('admin.create');
 //追加処理
 Route::post('/store','AdminController@store')->name('admin.store');
 
+//詳細画面
+Route::get('/show/{id}','AdminController@show')->name('admin.show');
+
 //編集画面
-Route::get('/edit','AdminController@edit')->name('admin.edit');
+Route::get('/edit/{id}','AdminController@edit')->name('admin.edit');
+
+//更新処理
+Route::post('/update/{id}','AdminController@update')->name('admin.update');
 
 
 
