@@ -29,6 +29,7 @@ class QuizyController extends Controller
         // $choices = DB::table('choices')->get();
         $prefecture = Prefecture::with("questions.choices")->find($id);
         //子のリレーション.孫のリレーション
+        // ②データを取得するときにwith関数を使う
 
         return view('quizyBlade.quizy',compact('prefecture','id'));
         // return view('quizyBlade.home',compact('prefecture','id'));

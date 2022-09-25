@@ -29,4 +29,22 @@ Route::get('/quizy/{id?}','QuizyController@index')->name('quizy');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-// Route::get('/home','QuizyController@login');
+// ->name('home');: ルーティング名
+
+
+//--------------管理画面
+//一覧表示
+Route::get('/admin', 'AdminController@index')->name('admin.index');
+// name で階層を付ける.
+
+//追加画面
+Route::get('/create','AdminController@create')->name('admin.create');
+
+//追加処理
+Route::post('/store','AdminController@store')->name('admin.store');
+
+//編集画面
+Route::get('/edit','AdminController@edit')->name('admin.edit');
+
+
+
