@@ -80,4 +80,23 @@
  
  
    //question__answer_1のときにbtnの選択肢0,1,2を1に、question__answer_2のときにbtnの選択肢3,4,5に対応するようにjを設定したい
+
+//    $(function() {
+//     $(".sortable").sortable();
+//     $(".sortable").disableSelection();
+//     $("#submit").click(function() {
+//         var listIds = $(".sortable").sortable("toArray");
+//         $("#list-ids").val(listIds);
+//         $("form").submit();
+//     });
+// });
+
+// $(function() {
+//   $(".sortable tbody").sortable();
+//   $("#submit").on('click', function() {
+//       var listIds = $(".sortable tbody").sortable("toArray");
+//       $("#list-ids").val(listIds);
+//       $("form").submit();
+//   });
+// });
  
