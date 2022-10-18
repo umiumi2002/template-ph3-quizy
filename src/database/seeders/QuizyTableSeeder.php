@@ -65,14 +65,17 @@ class QuizyTableSeeder extends Seeder
             $params = [
                 [
                     'prefecture_id' => 1,
+                    'order_number' => 1,
                     'image' => '1-1.png'
                 ],
                 [
                     'prefecture_id' => 1,
+                    'order_number' => 2,
                     'image' => '1-2.png'
                 ],
                 [
                     'prefecture_id' => 2,
+                    'order_number' => 1,
                     'image' => '2-1.png'
                 ],
             ];
