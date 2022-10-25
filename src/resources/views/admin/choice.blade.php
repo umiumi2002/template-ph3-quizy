@@ -11,7 +11,6 @@
                         <th>選択肢タイトル</th>
                         <th>question_id</th>
                         <th>編集</th>
-                        <th>削除</th>
                     </tr>
                 </thead>
                     <tbody class="sortable">
@@ -19,24 +18,14 @@
                             <tr>
                                 <td>{{ $choice->name }}</td>
                                 <td>{{ $choice->question_id }}</td>
-                                {{-- <td><a href="{{ route('question.edit', ['id' => $choice->id]) }}"
+                                <td><a href="{{ route('admin.edit.choice', ['id' => $choice->id]) }}"
                                         class="btn btn-info">編集</a>
-                                </td> --}}
-                                <td>
-                                    {{-- <form action="{{ route('question.destroy', ['id' => $choice->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger">削除</button>
-                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
             </table>
-            <input type="hidden" id="list-ids" name="list-ids" />
-            <button id="submit">更新</button>
             </form>
-
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

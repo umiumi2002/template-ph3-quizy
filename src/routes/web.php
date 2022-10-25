@@ -68,10 +68,14 @@ Route::post('/store_question','AdminController@store_question')->name('admin.sto
 
 
 //設問編集
-Route::get('/edit_question', 'HomeController@edit_question')->name('admin.edit.question');
+Route::get('/edit_question/{id}', 'AdminController@edit_question')->name('admin.edit.question');
+
+//更新処理
+Route::post('/update_question/{id}','AdminController@update_question')->name('admin.update.question');
+
 
 //設問削除
-Route::get('/destroy_question', 'HomeController@destroy_question')->name('admin.destroy.question');
+Route::get('/destroy_question/{id}', 'AdminController@destroy_question')->name('admin.destroy.question');
 
 //設問順番ソート
 // Route::post('question/{id}', 'AdminController@sort_question')->name('admin.sort.question');
@@ -81,7 +85,15 @@ Route::get('/destroy_question', 'HomeController@destroy_question')->name('admin.
 
 //---------------選択肢一覧---------------
 //選択肢一覧
-Route::get('/choice/{prefecture_id}/{question_id}','AdminController@choice')->name('admin.choice');
+Route::get('/choice/{prefecture_id}/{question_id}','AdminController@choice_index')->name('admin.choice');
+
+//編集画面
+Route::get('/edit_choice/{id}','AdminController@edit_choice')->name('admin.edit.choice');
+
+//更新処理
+Route::post('/update_choice/{id}','AdminController@update_choice')->name('admin.update.choice');
+
+
 
 
 

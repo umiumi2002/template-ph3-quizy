@@ -10,7 +10,9 @@ class Question extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'name'
+        'image',
+        'order_number',
+        'prefecture_id'=>['integer'],
     ];
     
     public function choices()

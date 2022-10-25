@@ -16,6 +16,7 @@ class Prefecture extends Model
     protected $fillable = [
         'name'
     ];
+    //fillを実行するためのfillable
 
 
 
@@ -68,4 +69,6 @@ class Prefecture extends Model
         //$prefecture->fill([])->save()で先ほど取得したレコード1件を更新する
         return $result;
     }
+
+
 };

@@ -26,6 +26,7 @@
 
                             <form method="POST">
                                 @csrf
+                                <fieldset>
                                 <td>
                                     <input value="{{ $question->id }}" name="question_id" hidden>
                                     <input value="{{ $question->order_number }}" name="order_number">
@@ -35,12 +36,13 @@
                                         </button>
                                     </div>
                                 </td>
-
+                            </fieldset>
                             </form>
 
                             <td><img src="{{ asset('img/' . $question->image) }}" alt=""></td>
-                            {{-- <td><a href="{{ route('admin/choice/' . $id . '/' . $question->id) }}"
-                                        class="btn btn-primary">選択肢画面</a></td> --}}
+                            <td><a href="{{ route('admin.choice',['prefecture_id' => $prefecture->id,'question_id' => $question->id]) }}"
+                                {{-- //$idは設問のコントローラのidと連携 --}}
+                                        class="btn btn-primary">選択肢画面</a></td>
                             <td><a href="{{ route('admin.edit.question', ['id' => $question->id]) }}"
                                     class="btn btn-info">編集</a>
                             </td>
