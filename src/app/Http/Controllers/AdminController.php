@@ -88,6 +88,7 @@ class AdminController extends Controller
     {
         $prefecture = Prefecture::find($id);
         $questions = Question::where('prefecture_id', $id)->orderBy('order_number', 'asc')->get();
+        // dd($questions);
         return view('admin.question', compact('prefecture', 'questions'));
     }
 
@@ -106,14 +107,9 @@ class AdminController extends Controller
 
         // ↓$requestでinputタグのnameをわざわざ送らなくても、questionインスタンスからprefecture_idにアクセスできるか
         $prefecture_id = $request -> input('prefecture_id');
-
-
         
-        dd($prefecture_id);
+        // dd($prefecture_id);
         // ↑↑↑そもそもnull
-
-
-
 
         // アップロードされたファイルの取得
         $image = $request->file('image');
@@ -125,9 +121,9 @@ class AdminController extends Controller
             'order_number'=> $request->order_number,
             'image' => $path,
         ]);
-        dd($request->order_number);
+        // dd($request->order_number);
         // $registerQuestion = $this->question->InsertQuestion($request);
-        return redirect()->route('admin.question');
+        return redirect()->route('admin.question',['id' => $prefecture_id]);
     }
 
     //編集画面

@@ -12,7 +12,7 @@ class Question extends Model
     protected $fillable = [
         'image',
         'order_number',
-        'prefecture_id'=>['integer'],
+        'prefecture_id',
     ];
     
     public function choices()
