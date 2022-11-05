@@ -22,23 +22,29 @@
             <h2 class="question">{{ $loop->iteration }}.この地名は何と読む?</h2>
             <img class="question__img" src="{{ asset('img/' . $question->image) }}" alt="">
             <ul class="question__lists">
-              @foreach ($question->choices as $choice)
-              {{-- where(フィールド名、値) choicesのquestion_id(1,2,3...)と自動生成されるquestionのidが一致する --}}
-                <div class="question__list" id="correct">
-                    {{ $choice->name }}
-                </div>
-                {{-- <div class="question__list" id="incorrect1">
-                    {{ $item->name }}
-                </div>
-                <div class="question__list" id="incorrect2">
-                    {{ $item->name }}
-                </div> --}}
-              @endforeach  
+                @foreach ($question->choices as $choice)
+                    {{-- where(フィールド名、値) choicesのquestion_id(1,2,3...)と自動生成されるquestionのidが一致する --}}
+                    <div class="question__list question__list_{{ $choice->question_id }}_{{ $choice->id }} question__list_{{ $choice->question_id }}"
+                        onclick="check( {{ $choice->question_id }} , {{ $choice->id }} , {{ $choice->valid }} )">
+                        {{ $choice->name }}
+                    </div>
+ 
+                @endforeach
             </ul>
-            {{-- <div class="box" id="resultbox1">
-                <p class="correctbox">正解！</p>
-                <br>正解は「{{ $item->name }}」です！
-            </div> --}}
+            <div class="question__answer question__answer_{{ $choice->question_id }}">
+                <p class="question__answer__text"></p>
+                <p class="question__answer__text__choice">
+                  正解は「
+           
+                  」です！
+                </p>
+              </div>
+              {{-- うえ --}}
+              {{-- $choices_corrects =  "SELECT * FROM choices WHERE prefecture_id = $id AND question_id = $i AND correct = 1";
+              // 都道府県番号と問題番号と正解番号が一致している時
+              $corrects = $db->query($choices_corrects)->fetchAll(PDO::FETCH_ASSOC | PDO::FETCH_UNIQUE); --}}
+      
+    
         @endforeach
         {{-- <!-- <div class="box" id="resultbox1">
           <p class="correctbox">正解！</p>
@@ -49,7 +55,7 @@
           <br>正解は「たかなわ」です！
       </div> --}}
 
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="{{ asset('/js/quizy.js') }}"></script>
 
 

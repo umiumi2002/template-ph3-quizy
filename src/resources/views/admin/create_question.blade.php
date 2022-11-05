@@ -2,7 +2,7 @@
 @section('content')
 <div class="container small">
   <h1>設問を登録</h1>
-  <form action="{{ route('admin.store.question') }}" method="POST" enctype="multipart/form-data">
+  <form action="{{ route('admin.store.question') }}" method="POST" action="/upload" enctype="multipart/form-data">
   @csrf
     <fieldset>
         <div class="form-group">

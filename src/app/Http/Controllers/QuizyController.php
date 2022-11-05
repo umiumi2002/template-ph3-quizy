@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 
 
 use App\Prefecture;
+use App\Question;
+use App\Choice;
 use Illuminate\Http\Request;
 // requestを使える状態にしている
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\DB;
 
 
@@ -30,6 +31,12 @@ class QuizyController extends Controller
         $prefecture = Prefecture::with("questions.choices")->find($id);
         //子のリレーション.孫のリレーション
         // ②データを取得するときにwith関数を使う
+        $choice = Choice::find($id);
+
+
+        // $cond = ['prefecture_id' => $id, 'question_id' => $choice->question_id, 'valid' => 1];
+
+        // $corrects =Prefecture::with("questions:id,prefecture_id","choices:id,question_id")->where($cond)->get();
 
         return view('quizyBlade.quizy',compact('prefecture','id'));
         // return view('quizyBlade.home',compact('prefecture','id'));

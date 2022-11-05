@@ -39,7 +39,7 @@
                             </fieldset>
                             </form>
 
-                            <td><img src="{{ asset('img/' . $question->image) }}" alt=""></td>
+                            <td><img src="{{ asset('image/' . $question->image) }}" alt=""></td>
                             <td><a href="{{ route('admin.choice',['prefecture_id' => $prefecture->id,'question_id' => $question->id]) }}"
                                 {{-- //$idは設問のコントローラのidと連携 --}}
                                         class="btn btn-primary">選択肢画面</a></td>

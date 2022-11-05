@@ -88,7 +88,6 @@ class AdminController extends Controller
     {
         $prefecture = Prefecture::find($id);
         $questions = Question::where('prefecture_id', $id)->orderBy('order_number', 'asc')->get();
-        // dd($questions);
         return view('admin.question', compact('prefecture', 'questions'));
     }
 
@@ -107,19 +106,25 @@ class AdminController extends Controller
 
         // ↓$requestでinputタグのnameをわざわざ送らなくても、questionインスタンスからprefecture_idにアクセスできるか
         $prefecture_id = $request -> input('prefecture_id');
-        
-        // dd($prefecture_id);
-        // ↑↑↑そもそもnull
 
         // アップロードされたファイルの取得
-        $image = $request->file('image');
+        // $image = $request->file('image');
         // ファイルの保存とパスの取得
-        $path = isset($image) ? $image->store('img', 'public') : '';
+        // $path = isset($image) ? $image->store('image', 'public') : '';
+
+        //画像処理
+        if ($file = $request->image) {
+            $fileName = $file->getClientOriginalName();
+            $target_path = public_path('image/');
+            $file->move($target_path, $fileName);
+        } else {
+            $fileName = "";
+        }
         
         Question::create([
             'prefecture_id' => $prefecture_id,
             'order_number'=> $request->order_number,
-            'image' => $path,
+            'image' => $fileName,
         ]);
         // dd($request->order_number);
         // $registerQuestion = $this->question->InsertQuestion($request);
@@ -141,28 +146,52 @@ class AdminController extends Controller
     //更新処理
     public function update_question(Request $request, $id)
     {
+        $model = new Question();
 
         $question = Question::find($id);
 
-        $image = $request->file('question');
+        // $image = $request->file('image');
         // 現在の画像へのパスをセット
-        $image_path = $question->image;
-        if (isset($image)) {
-            // 現在の画像ファイルの削除
-            Storage::disk('public')->delete($image_path);
-            // 選択された画像ファイルを保存してパスをセット
-            $image_path = $image->store('public/temp');
-            // ファイル名は$temp_pathから"public/temp/"を除いたもの
-            $filename = str_replace('public/temp/', '', $image_path);
-            // データベースを更新
-            $question->update([
-                'image' => $filename,
-            ]);
-        }
+        // $image_path = $question->image;
+
+        // if (isset($image)) {
+        //     // 現在の画像ファイルの削除
+        //     Storage::disk('image')->delete($image_path);
+        //     // ファイル名は$temp_pathから"public/temp/"を除いたもの
+        //     $filename = str_replace('public/image/', '', $image_path);
+        //     // 選択された画像ファイルを保存してパスをセット
+        //     $image_path = $image->store('image', $filename);
+        //     // データベースを更新
+        //     $question->update([
+        //         'image' => $image_path,
+        //     ]);
+        // }
         //↑↑↑更新処理
+
+        // if($request->hasFile('image')) {
+        //     Question::delete('public/image/' . $question->image); //元の画像を削除☆
+
+        //     $path = $request->file('image')->store('public/image');
+        //     $question->image = basename($path);
+        //     $question->save();
+
+        $updateQuestion = $question->updateQuestion($request, $question);
+        //↑↑↑更新処理
+        
+
         return redirect()->route('admin.question',['id' => $question->prefecture_id]);
     }
+    
 
+    public function destroy_question($id)
+    {
+        $question = Question::find($id);
+        // $deleteImage = $question->image;
+        // $pathdel = storage_path() . '/app/public/image/' . $deleteImage;
+        // \File::delete($pathdel);
+        $question->delete();
+        return redirect()->route('admin.question',['id' => $question->prefecture_id]);
+    }
 
 
 
@@ -201,8 +230,6 @@ class AdminController extends Controller
     public function update_choice(Request $request, $id)
     {
         $choice = Choice::find($id);
-
-        // dd($this);
 
         //record1件
         $updateChoice = $choice->updateChoice($request, $choice);

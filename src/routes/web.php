@@ -75,7 +75,7 @@ Route::post('/update_question/{id}','AdminController@update_question')->name('ad
 
 
 //設問削除
-Route::get('/destroy_question/{id}', 'AdminController@destroy_question')->name('admin.destroy.question');
+Route::post('/destroy_question/{id}', 'AdminController@destroy_question')->name('admin.destroy.question');
 
 //設問順番ソート
 // Route::post('question/{id}', 'AdminController@sort_question')->name('admin.sort.question');
