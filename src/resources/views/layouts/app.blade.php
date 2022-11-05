@@ -12,6 +12,13 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+     {{-- クイズ処理用のjs --}}
+     <script src="{{ asset('js/quizy.js') }}"></script>
+     {{-- タイトル編集js --}}
+     <script src="{{ asset('js/edit_title.js') }}"></script>
+     {{-- edit_titleブレード参照 --}}
+     @stack('scripts')
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

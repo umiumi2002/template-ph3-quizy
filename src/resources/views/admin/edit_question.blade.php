@@ -5,14 +5,13 @@
     <form action="{{ route('admin.update.question', ['id' => $question->id]) }}" method="POST" enctype="multipart/form-data">
         {{-- 第一引数,第二引数：name,URLに渡す変数(/id) --}}
         @csrf
-        {{-- @method('patch') --}}
         <fieldset>
             <div class="form-group">
                 <label for="name">{{ __('設問編集') }}<span
                         class="badge badge-danger ml-2">{{ __('必須') }}</span></label>
                         {{-- <input type="text" name="order_number" placeholder="数字を入力してください"  class="form-control"> --}}
                 {{-- <input type="text" class="form-control" name="name" id="name"> --}}
-
+                <img src="{{ asset('storage/temp/' . $question->image) }}" alt="" width="15%">
                 <div>
                   <input type="file" name="image" class="mt-3 mb-5">
                 </div>

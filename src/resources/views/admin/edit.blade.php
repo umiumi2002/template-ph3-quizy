@@ -22,3 +22,9 @@
   </form>
 
 @endsection
+
+@push('scripts')
+    {{-- タイトル編集js --}}
+    <script src="{{ asset('js/sortable.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+@endpush

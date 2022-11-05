@@ -134,21 +134,36 @@ class AdminController extends Controller
     //編集画面
     public function edit_question($id)
     {
-        $prefecture = Prefecture::find($id);
         $question = Question::find($id);
 
         //※問題点：id=2の時に一覧画面戻るとかめいどなのに広島に戻る
         // →解決：prefecture_idを設定
 
-        return view('admin.edit_question', compact('prefecture', 'question'));
+        return view('admin.edit_question', compact('question'));
     }
 
     //更新処理
     public function update_question(Request $request, $id)
     {
-        $model = new Question();
-
         $question = Question::find($id);
+        // 画像ファイルインスタンス取得
+        $image = $request->file('image');
+        // 現在の画像へのパスをセット
+        $image_path = $question->image;
+        if (isset($image)) {
+          // 現在の画像ファイルの削除
+          Storage::disk('public')->delete($image_path);
+          // 選択された画像ファイルを保存してパスをセット
+          $image_path = $image->store('public/temp');
+          // ファイル名は$temp_pathから"public/temp/"を除いたもの
+          $filename = str_replace('public/temp/', '', $image_path);
+          // データベースを更新
+          $question->update([
+            'image' => $filename,
+          ]);
+        }
+    
+        // return redirect()->route('edit_question.index', ['id' => $prefecture_id]);
 
         // $image = $request->file('image');
         // 現在の画像へのパスをセット
@@ -175,13 +190,14 @@ class AdminController extends Controller
         //     $question->image = basename($path);
         //     $question->save();
 
-        $updateQuestion = $question->updateQuestion($request, $question);
+        // $updateQuestion = $question->updateQuestion($request, $question);
         //↑↑↑更新処理
         
 
         return redirect()->route('admin.question',['id' => $question->prefecture_id]);
     }
-    
+
+
 
     public function destroy_question($id)
     {
@@ -229,11 +245,12 @@ class AdminController extends Controller
     //更新処理
     public function update_choice(Request $request, $id)
     {
+        $question = Question::find($id);
         $choice = Choice::find($id);
 
         //record1件
         $updateChoice = $choice->updateChoice($request, $choice);
         //↑↑↑更新処理
-        return redirect()->route('admin.choice');
+        return redirect()->route('admin.choice',['prefecture_id' => $question->prefecture_id,'question_id'=>$choice->question_id]);
     }
 }

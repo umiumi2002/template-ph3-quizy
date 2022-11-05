@@ -35,7 +35,6 @@ class QuizyController extends Controller
 
 
         // $cond = ['prefecture_id' => $id, 'question_id' => $choice->question_id, 'valid' => 1];
-
         // $corrects =Prefecture::with("questions:id,prefecture_id","choices:id,question_id")->where($cond)->get();
 
         return view('quizyBlade.quizy',compact('prefecture','id'));

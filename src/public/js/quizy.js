@@ -30,14 +30,14 @@
      $('.question__list_'+ question_id + '_' + choice_id).addClass("succeeded");
      $('.question__answer_' + question_id).addClass("show");
      $(".question__list_" + question_id).addClass("cant_click");
-     $(".question__answer__text").text("正解");
-     $(".question__answer__text").removeClass("fail_answer_text");
+     $(".question__answer__text_" + question_id).text("正解");
+     $(".question__answer__text_" + question_id).removeClass("fail_answer_text");
    } else {
      $('.question__list_'+ question_id + '_' + choice_id).addClass("failed");
      $('.question__list_'+ question_id + '_' + 1).addClass("succeeded");
      $('.question__answer_' + question_id).addClass("show");
-     $(".question__answer__text").text("不正解");
-     $(".question__answer__text").addClass("fail_answer_text");
+     $(".question__answer__text_" + question_id).text("不正解");
+     $(".question__answer__text_"+ question_id).addClass("fail_answer_text");
      $(".question__list_" + question_id).addClass("cant_click");
  
    }
