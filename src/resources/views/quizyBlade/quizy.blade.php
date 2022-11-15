@@ -20,7 +20,7 @@
             {{-- 1にしたら東京のものだけ、2にしたら広島のものだけ --}}
             {{-- 矢印の右は＄をとる --}}
             <h2 class="question">{{ $loop->iteration }}.この地名は何と読む?</h2>
-            <img class="question__img" src="{{ asset('img/' . $question->image) }}" alt="">
+            <img class="question__img" src="{{ asset('image/' . $question->image) }}" alt="">
             @foreach ($question->choices as $choice)
                 <ul class="question__lists">
                     {{-- where(フィールド名、値) choicesのquestion_id(1,2,3...)と自動生成されるquestionのidが一致する --}}

@@ -53,8 +53,10 @@ Route::post('/update/{id}','AdminController@update')->name('admin.update');
 Route::post('/destroy/{id}','AdminController@destroy')->name('admin.destroy');
 
 //問題タイトルソート
-Route::post('admin/prefecture/sort', 'AdminController@sort_prefecture')->name('admin.sort.prefecture');
+Route::get('admin/prefecture/sort', 'AdminController@sort_prefecture')->name('admin.sort.prefecture');
 
+//ソート更新
+Route::post('/update_sortPrefecture','AdminController@savesort_prefecture')->name('admin.update.sortPrefecture');
 
 //--------------- 設問管理---------------
 //設問一覧
@@ -79,6 +81,10 @@ Route::post('/destroy_question/{id}', 'AdminController@destroy_question')->name(
 
 //設問順番ソート
 // Route::post('question/{id}', 'AdminController@sort_question')->name('admin.sort.question');
+
+//ソート更新
+Route::post('/update_sortQuestion','AdminController@savesort_question')->name('admin.update.sortQuestion');
+
 
 
 

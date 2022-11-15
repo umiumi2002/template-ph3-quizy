@@ -27,7 +27,7 @@ class AdminController extends Controller
     //一覧画面
     public function index()
     {
-        $prefectures = $this->prefecture->findAllPrefectures();
+        $prefectures = Prefecture::orderBy('order_number', 'asc')->get();
         return view('admin.admin', compact('prefectures'));
     }
 
@@ -73,13 +73,23 @@ class AdminController extends Controller
     //問題タイトルソート
     public function sort_prefecture(Request $request)
     {
-        $orderIds = explode(',', $request->listIds);
-        foreach ($orderIds as $key => $orderId) {
-            $prefecture = Prefecture::find($orderId);
-            $prefecture->id = $key + 1;
+        $prefectures = Prefecture::orderBy('order_number', 'asc')->get();
+        return view('admin.sort_prefecture', compact('prefectures'));
+    }
+
+    //ソート更新
+    public function savesort_prefecture(Request $request)
+    {
+        $lists = explode(',', $request->listIds);
+        foreach ($lists as $index => $list) {
+            $prefecture = Prefecture::find($list);
+            $prefecture->order_number = $index;
             $prefecture->save();
+
+            //listの順番変えたものをindexに代入して
+            //要素としての数字を変えるのではなくindexの順番を要素に反映させる
         }
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.index');;
     }
 
     //---------------設問関連---------------
@@ -96,7 +106,7 @@ class AdminController extends Controller
     {
         $prefecture = Prefecture::find($id);
         $question = Question::where('prefecture_id', $id)->with("choices")->first();
-        return view('admin.create_question', compact('prefecture','question'));
+        return view('admin.create_question', compact('prefecture', 'question'));
         //フォルダ／ファイル名.blade.php
     }
 
@@ -105,7 +115,7 @@ class AdminController extends Controller
     {
 
         // ↓$requestでinputタグのnameをわざわざ送らなくても、questionインスタンスからprefecture_idにアクセスできるか
-        $prefecture_id = $request -> input('prefecture_id');
+        $prefecture_id = $request->input('prefecture_id');
 
         // アップロードされたファイルの取得
         // $image = $request->file('image');
@@ -120,15 +130,15 @@ class AdminController extends Controller
         } else {
             $fileName = "";
         }
-        
+
         Question::create([
             'prefecture_id' => $prefecture_id,
-            'order_number'=> $request->order_number,
+            'order_number' => $request->order_number,
             'image' => $fileName,
         ]);
         // dd($request->order_number);
         // $registerQuestion = $this->question->InsertQuestion($request);
-        return redirect()->route('admin.question',['id' => $prefecture_id]);
+        return redirect()->route('admin.question', ['id' => $prefecture_id]);
     }
 
     //編集画面
@@ -145,56 +155,18 @@ class AdminController extends Controller
     //更新処理
     public function update_question(Request $request, $id)
     {
+
+        $dir = 'image';
         $question = Question::find($id);
         // 画像ファイルインスタンス取得
-        $image = $request->file('image');
-        // 現在の画像へのパスをセット
-        $image_path = $question->image;
-        if (isset($image)) {
-          // 現在の画像ファイルの削除
-          Storage::disk('public')->delete($image_path);
-          // 選択された画像ファイルを保存してパスをセット
-          $image_path = $image->store('public/temp');
-          // ファイル名は$temp_pathから"public/temp/"を除いたもの
-          $filename = str_replace('public/temp/', '', $image_path);
-          // データベースを更新
-          $question->update([
-            'image' => $filename,
-          ]);
-        }
-    
-        // return redirect()->route('edit_question.index', ['id' => $prefecture_id]);
-
-        // $image = $request->file('image');
-        // 現在の画像へのパスをセット
-        // $image_path = $question->image;
-
-        // if (isset($image)) {
-        //     // 現在の画像ファイルの削除
-        //     Storage::disk('image')->delete($image_path);
-        //     // ファイル名は$temp_pathから"public/temp/"を除いたもの
-        //     $filename = str_replace('public/image/', '', $image_path);
-        //     // 選択された画像ファイルを保存してパスをセット
-        //     $image_path = $image->store('image', $filename);
-        //     // データベースを更新
-        //     $question->update([
-        //         'image' => $image_path,
-        //     ]);
-        // }
-        //↑↑↑更新処理
-
-        // if($request->hasFile('image')) {
-        //     Question::delete('public/image/' . $question->image); //元の画像を削除☆
-
-        //     $path = $request->file('image')->store('public/image');
-        //     $question->image = basename($path);
-        //     $question->save();
-
-        // $updateQuestion = $question->updateQuestion($request, $question);
-        //↑↑↑更新処理
+        $file_name = $request->file('image')->getClientOriginalName();
+        $request->file('image')->storeAs('public/' . $dir,$file_name);
         
+        $question->update([
+            'image' => $file_name,
+        ]);
 
-        return redirect()->route('admin.question',['id' => $question->prefecture_id]);
+        return redirect()->route('admin.question', ['id' => $question->prefecture_id]);
     }
 
 
@@ -206,13 +178,13 @@ class AdminController extends Controller
         // $pathdel = storage_path() . '/app/public/image/' . $deleteImage;
         // \File::delete($pathdel);
         $question->delete();
-        return redirect()->route('admin.question',['id' => $question->prefecture_id]);
+        return redirect()->route('admin.question', ['id' => $question->prefecture_id]);
     }
 
 
 
     //設問ソート
-    public function sort_question($request, $id)
+    public function sort_question(Request $request, $id)
     {
         $prefecture = Prefecture::find($id);
         //record1件
@@ -220,6 +192,21 @@ class AdminController extends Controller
         //↑↑↑更新処理
         return redirect()->route('admin.question');
     }
+
+    //ソート更新
+    public function savesort_question(Request $request)
+    {
+        $question_id = $request['question_id'];
+        $question = Question::find($question_id);
+        $question->order_number = $request['order_number'];
+        $question->save();
+
+        //listの順番変えたものをindexに代入して
+        //要素としての数字を変えるのではなくindexの順番を要素に反映させる
+        return redirect()->route('admin.question', ['id' => $question->prefecture_id]);
+    }
+
+
 
 
 
@@ -251,6 +238,6 @@ class AdminController extends Controller
         //record1件
         $updateChoice = $choice->updateChoice($request, $choice);
         //↑↑↑更新処理
-        return redirect()->route('admin.choice',['prefecture_id' => $question->prefecture_id,'question_id'=>$choice->question_id]);
+        return redirect()->route('admin.choice', ['prefecture_id' => $question->prefecture_id, 'question_id' => $choice->question_id]);
     }
 }

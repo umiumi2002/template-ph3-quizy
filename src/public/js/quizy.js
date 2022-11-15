@@ -15,7 +15,6 @@
 /**
  * @param
  */
- console.log('i');
 
  /**
   * check関数 
@@ -24,7 +23,6 @@
   * @param  {Number} valid 正解番号
   */
  function check (question_id, choice_id, valid) {
-   console.log('s');
    if (valid === 1) {
      console.log('seikai');
      $('.question__list_'+ question_id + '_' + choice_id).addClass("succeeded");
@@ -43,60 +41,14 @@
    }
  };
  
- // Btns.forEach(function(btn) {
- //   // ボタンの個数分ループ
- //       // console.log(j);
- //       // 各ボタンをイベントリスナーに登録
- //       btn.addEventListener("click", function () {
- 
- //         // var aaa = ~~(j/3);
- 
- //         // activeクラスの追加と削除
- //         if (this.classList.contains("1") == true) {
- //           this.classList.add("succeeded");
-   
- //           // 正解の箱を表示
- //           // $(".question__answer_"+ Math.floor(aaa)).classList.remove("question__answer");
- //           $(".question__answer").addClass("show");
-   
- //           // クリックできなくする
- //           $(".question__list").addClass("cant_click");
- //         } else {
- //           this.classList.add("failed");
- //           $(".1").addClass("succeeded");
- //           // 回答ボックスの文字・色を変更
- //           $(".question__answer__text").text("不正解");
-   
- //           // 不正解の箱を表示
- //           $(".question__answer__text").addClass("fail_answer_text");
- //           $(".question__answer").addClass("show");
-   
- //           // クリックできなくする
- //           $(".question__list").addClass("cant_click");
- //         }
- //       });
- //     });
- 
- 
- 
-   //question__answer_1のときにbtnの選択肢0,1,2を1に、question__answer_2のときにbtnの選択肢3,4,5に対応するようにjを設定したい
 
-//    $(function() {
-//     $(".sortable").sortable();
-//     $(".sortable").disableSelection();
-//     $("#submit").click(function() {
-//         var listIds = $(".sortable").sortable("toArray");
-//         $("#list-ids").val(listIds);
-//         $("form").submit();
-//     });
-// });
-
-// $(function() {
-//   $(".sortable tbody").sortable();
-//   $("#submit").on('click', function() {
-//       var listIds = $(".sortable tbody").sortable("toArray");
-//       $("#list-ids").val(listIds);
-//       $("form").submit();
-//   });
-// });
- 
+//  ソート
+//  $(function() {
+//        $(".sortable").sortable();
+//        $(".sortable").disableSelection();
+//        $("#submit").click(function() {
+//            var listIds = $(".sortable").sortable("toArray");
+//            $("#list-ids").val(listIds);
+//            $("form").submit();
+//        });
+//    });

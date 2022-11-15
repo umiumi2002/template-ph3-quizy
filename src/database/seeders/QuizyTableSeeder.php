@@ -83,10 +83,16 @@ class QuizyTableSeeder extends Seeder
     
             $params = [
                 [
+                    'order_number' => 1,
                     'name' => '東京の難読地名クイズ'
                 ],
                 [
+                    'order_number' => 2,
                     'name' => '広島の難読地名クイズ'
+                ],
+                [
+                    'order_number' => 3,
+                    'name' => '青森の難読地名クイズ'
                 ]
             ];
             DB::table('prefectures')->insert($params);
