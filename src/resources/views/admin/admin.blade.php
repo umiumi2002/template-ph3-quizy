@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
-    <div class="">
+    <div>
         <div class="col-md-8">
-            <h1 class="">問題タイトルを管理</h1>
+            <h1>問題タイトルを管理</h1>
             <button onclick="location.href='{{ route('admin.create') }}' " class="btn btn-success">追加</button>
-            <form action="{{ route('admin.sort.prefecture') }}" method="post">
+            <button onclick="location.href='{{ route('admin.sort.prefecture') }}'" class="btn btn-success" id="submit">ソート画面</button>
+
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -32,8 +33,6 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <input type="hidden" id="list-ids" name="listIds" />
-                    <button id="submit">更新</button>
                 </form>
             </table>
         </div>

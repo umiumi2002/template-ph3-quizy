@@ -53,8 +53,10 @@ Route::post('/update/{id}','AdminController@update')->name('admin.update');
 Route::post('/destroy/{id}','AdminController@destroy')->name('admin.destroy');
 
 //問題タイトルソート
-Route::post('admin/prefecture/sort', 'AdminController@sort_prefecture')->name('admin.sort.prefecture');
+Route::get('admin/prefecture/sort', 'AdminController@sort_prefecture')->name('admin.sort.prefecture');
 
+//ソート更新
+Route::post('/update_sortPrefecture','AdminController@savesort_prefecture')->name('admin.update.sortPrefecture');
 
 //--------------- 設問管理---------------
 //設問一覧
@@ -68,20 +70,36 @@ Route::post('/store_question','AdminController@store_question')->name('admin.sto
 
 
 //設問編集
-Route::get('/edit_question', 'HomeController@edit_question')->name('admin.edit.question');
+Route::get('/edit_question/{id}', 'AdminController@edit_question')->name('admin.edit.question');
+
+//更新処理
+Route::post('/update_question/{id}','AdminController@update_question')->name('admin.update.question');
+
 
 //設問削除
-Route::get('/destroy_question', 'HomeController@destroy_question')->name('admin.destroy.question');
+Route::post('/destroy_question/{id}', 'AdminController@destroy_question')->name('admin.destroy.question');
 
 //設問順番ソート
 // Route::post('question/{id}', 'AdminController@sort_question')->name('admin.sort.question');
+
+//ソート更新
+Route::post('/update_sortQuestion','AdminController@savesort_question')->name('admin.update.sortQuestion');
+
 
 
 
 
 //---------------選択肢一覧---------------
 //選択肢一覧
-Route::get('/choice/{prefecture_id}/{question_id}','AdminController@choice')->name('admin.choice');
+Route::get('/choice/{prefecture_id}/{question_id}','AdminController@choice_index')->name('admin.choice');
+
+//編集画面
+Route::get('/edit_choice/{id}','AdminController@edit_choice')->name('admin.edit.choice');
+
+//更新処理
+Route::post('/update_choice/{id}','AdminController@update_choice')->name('admin.update.choice');
+
+
 
 
 

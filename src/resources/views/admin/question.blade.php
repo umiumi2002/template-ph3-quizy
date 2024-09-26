@@ -24,23 +24,20 @@
                             <td>{{ $question->id }}</td>
                             <td>{{ $question->prefecture_id }}</td>
 
-                            <form method="POST">
-                                @csrf
-                                <td>
+                            <td>
+                                <form action="{{ route('admin.update.sortQuestion') }}" method="POST">
+                                    @csrf
                                     <input value="{{ $question->id }}" name="question_id" hidden>
                                     <input value="{{ $question->order_number }}" name="order_number">
                                     <div class="d-flex justify-content-between pt-3">
-                                        <button type="submit" class="btn btn-success">
-                                            {{ __('更新') }}
-                                        </button>
+                                    <input type="submit" class="btn btn-success" value="更新">
                                     </div>
-                                </td>
+                                </form>
+                            </td>
 
-                            </form>
-
-                            <td><img src="{{ asset('img/' . $question->image) }}" alt=""></td>
-                            {{-- <td><a href="{{ route('admin/choice/' . $id . '/' . $question->id) }}"
-                                        class="btn btn-primary">選択肢画面</a></td> --}}
+                            <td><img src="{{ asset('image/' . $question->image) }}" alt=""></td>
+                            <td><a href="{{ route('admin.choice', ['prefecture_id' => $prefecture->id, 'question_id' => $question->id]) }}"
+                                    {{-- //$idは設問のコントローラのidと連携 --}} class="btn btn-primary">選択肢画面</a></td>
                             <td><a href="{{ route('admin.edit.question', ['id' => $question->id]) }}"
                                     class="btn btn-info">編集</a>
                             </td>
